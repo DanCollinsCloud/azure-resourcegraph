@@ -1,0 +1,9 @@
+Resources
+| where type == "microsoft.compute/virtualmachines"
+| extend OSType = tostring(properties.storageProfile.osDisk.osType)
+//| where  OSType == "Windows"
+| extend hardwareProfile = tostring(properties.hardwareProfile.vmSize)
+| extend osName = tostring(properties.extended.instanceView.osName)
+| extend osVersion = tostring(properties.extended.instanceView.osVersion)
+| extend licenseType = tostring(properties.licenseType)
+| project id, type, location, resourceGroup, subscriptionId, tenantId,OSType, hardwareProfile, osName, osVersion, licenseType
